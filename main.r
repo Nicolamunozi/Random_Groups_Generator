@@ -10,6 +10,8 @@ library(writexl)
 
 #TODO: Generalizar el path
 #TODO: Generalizar tipo de archivo, agregar csv y otros formatos excel.
+#Tengo que investigar como "deshardcodear" el path
+#para que sea dinámico. (Depende del sistema operativo del investigador)
 
 load_data <- function(file, path= file.path("C:","Users","niko_","Desktop",
                                             "Proyectos",
