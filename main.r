@@ -2,7 +2,7 @@ library(tidyverse)
 library(readxl)
 library(writexl)
 
-
+#TODO: Crear ambiente del paquete. 
 
 #functions: 
 
