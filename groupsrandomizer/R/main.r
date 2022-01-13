@@ -9,10 +9,10 @@ library(writexl)
 #Utils
 #TODO: Funcion para identificar si es Linux o Windows
 
-#If isLinux == TRUE -> Haz esta wea
-#Else if 
-isLinux <- function(){
-  unname(Sys.info()["sysname"]) == "Linux"
+#If isWindows == TRUE -> Haz esta wea
+#Else if -> haz la wea nueva
+isWindows <- function(){
+  unname(Sys.info()["sysname"]) == "Windows"
 }
 
 #Load Data:
