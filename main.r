@@ -59,7 +59,7 @@ get_groups <- function(data, group_zise){
 
 #Group variable to data:
 
-insert_groups <- function(data, group_zise){
+label_groups <- function(data, group_zise){
   
   groups <- get_groups(data=data, group_zise = group_zise )
   len_groups <- length(groups)
@@ -110,7 +110,7 @@ randomizer <- function(file, group_zise, ...){
   
   data <- load_data(file = file)
   data <- process_data(data)
-  data <- insert_groups(data, group_zise)
+  data <- label_groups(data, group_zise)
   data <- data_formating(data)
   data_exporting(data)
   data
@@ -120,7 +120,7 @@ randomizer <- function(file, group_zise, ...){
 
 datos <- load_data(file= "lista.xlsx")
 datos <- process_data(datos)
-datos <- insert_groups(data= datos, group_zise = 5)
+datos <- label_groups(data= datos, group_zise = 5)
 datos <- data_formating(datos)
 datos
 data_exporting(datos)
