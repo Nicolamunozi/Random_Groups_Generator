@@ -8,17 +8,10 @@ library(writexl)
 
 #Load Data:
 
-#TODO: Generalizar el path
 #TODO: Generalizar tipo de archivo, agregar csv y otros formatos excel.
-#Tengo que investigar como "deshardcodear" el path
-#para que sea dinámico. (Depende del sistema operativo del investigador)
 
 
-load_data <- function(file, path= file.path("C:","Users","niko_","Desktop",
-                                            "Proyectos",
-                                            "Python",
-                                            "minitrabajos")){
-    file <- file.path(path, file)
+load_data <- function(file=file.choose()){
     data <-read_xlsx(file)
     data
   }
@@ -98,20 +91,16 @@ data_formating <- function(data, variables = c(5,2,3,4), as_df = FALSE){
 #(should it be for more formats?)
 #TODO: Generalizar Path
 #TODO: Generalizar tipo y nombre del archivo output.
-data_exporting <- function(data, path=file.path("C:", "Users","niko_",
-                                                "Desktop",
-                                                "Proyectos",
-                                                "Python",
-                                                "minitrabajos")){
+data_exporting <- function(data, name="groups.xlsx", path=choose.dir()){
 
-  write_xlsx(data, path = file.path(path, "groups.xlsx"))
+  write_xlsx(data, path = file.path(path, name))
 }
 
 #Integrated function:
 
-randomizer <- function(file, group_zise, ...){
+randomizer <- function(group_zise){
 
-  data <- load_data(file = file)
+  data <- load_data()
   data <- process_data(data)
   data <- label_groups(data, group_zise)
   data <- data_formating(data)
@@ -121,13 +110,13 @@ randomizer <- function(file, group_zise, ...){
 
 #Probando las funciones:
 
-datos <- load_data(file= "lista.xlsx")
+datos <- load_data()
 datos <- process_data(datos)
-datos <- label_groups(data= datos, group_zise = 5)
+datos <- label_groups(data= datos, group_zise = 4)
 datos <- data_formating(datos)
 datos
 data_exporting(datos)
-c
-randomizer("lista.xlsx", 4)
+
+randomizer(5)
 
 
