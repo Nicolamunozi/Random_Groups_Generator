@@ -2,11 +2,15 @@ library(tidyverse)
 library(readxl)
 library(writexl)
 
-#Hola como estay
+
 
 #functions: 
 
 #Load Data:
+
+#TODO: Generalizar el path
+#TODO: Generalizar tipo de archivo, agregar csv y otros formatos excel.
+
 load_data <- function(file, path= file.path("C:","Users","niko_","Desktop",
                                             "Proyectos",
                                             "Python",
@@ -18,6 +22,9 @@ load_data <- function(file, path= file.path("C:","Users","niko_","Desktop",
 
 
 #Preprocess Data:
+#Notar que la data viene en un orden, que es "Nombre","Apellido","Mail"
+#
+#TODO: Generalizar orden y cantidad de columnas 
 process_data <- function(data){
           n_filas <- dim(data)[1]
           ID <- as.double(c(1:n_filas))
@@ -32,6 +39,8 @@ process_data <- function(data){
 
 
 #Generating groups:
+
+#TODO: Vectorizar
 get_groups <- function(data, group_zise){
                 groups <- list()
                 len_groups <- dim(data)[1]/group_zise
@@ -66,6 +75,7 @@ insert_groups <- function(data, group_zise){
 
 #Groups for people who doesn't fit to the data:  
 
+#TODO: Construir funcion para gente sin grupos cuando aplica.
 
 #Final accommodations of the data:
 
@@ -83,7 +93,8 @@ data_formating <- function(data, variables = c(5,2,3,4), as_df = FALSE){
 
 #Data exporting:
 #(should it be for more formats?)
-
+#TODO: Generalizar Path
+#TODO: Generalizar tipo y nombre del archivo output. 
 data_exporting <- function(data, path=file.path("C:", "Users","niko_",
                                                 "Desktop",
                                                 "Proyectos", 
