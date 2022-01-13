@@ -6,6 +6,15 @@ library(writexl)
 
 #functions:
 
+#Utils
+#TODO: Funcion para identificar si es Linux o Windows
+
+#If isLinux == TRUE -> Haz esta wea
+#Else if 
+isLinux <- function(){
+  unname(Sys.info()["sysname"]) == "Linux"
+}
+
 #Load Data:
 
 #TODO: Generalizar tipo de archivo, agregar csv y otros formatos excel.
@@ -117,6 +126,6 @@ datos <- data_formating(datos)
 datos
 data_exporting(datos)
 
-randomizer(5)
+#randomizer(5)
 
 
