@@ -2,6 +2,7 @@ library(tidyverse)
 library(readxl)
 library(writexl)
 
+#Hola como estay
 
 #functions: 
 
