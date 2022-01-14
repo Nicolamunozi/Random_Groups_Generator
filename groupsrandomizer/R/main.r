@@ -117,6 +117,40 @@ datos <- data_formating(datos)
 datos
 data_exporting(datos)
 
-randomizer(5)
+datos <- randomizer(8)
+
+
+datos
+
+#Despues, esto es rellenar hacia abajo
+sum((datos$Groups == 0)) #cantidad de gente sin grupo
+sum((datos$Groups == 1)) #cantidad de gente por grupo
+
+
+#rellenar hacia arriba.
+
+fill_groups <- function(data,upper = TRUE){
+  if (upper) { #hacia arriba está listo.
+   data$Groups <- replace(data$Groups,
+                          data$Groups==0,
+                          sample(c(1:max(data$Groups)),sum(data$Groups==0),
+                                 replace = FALSE))
+
+  }
+  else{
+
+  }
+
+  data[order(data$Groups),]
+}
+
+
+
+#aqui estoy probando para armar la segunda parte.
+while (sum(datos$Groups==0)< sum(datos$Groups==1)-1){
+
+
+}
+
 
 
