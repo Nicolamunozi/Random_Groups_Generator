@@ -1,7 +1,7 @@
 library(tidyverse)
 library(readxl)
 library(writexl)
-
+library(tcltk)
 #TODO: Crear ambiente del paquete.
 
 #functions:
@@ -12,6 +12,15 @@ len_groups <- function(data){
   for(i in 1:max(data$Groups)){
     print(paste("Group",i,"has",sum((datos$Groups == i)), "members"))
   }
+}
+
+#Utils
+#TODO: Funcion para identificar si es Linux o Windows
+
+#If isWindows == TRUE -> Haz esta wea
+#Else if -> haz la wea nueva
+isWindows <- function(){
+  unname(Sys.info()["sysname"]) == "Windows"
 }
 
 #Load Data:
@@ -121,6 +130,9 @@ data_formating <- function(data, variables = c(5,2,3,4), as_df = FALSE){
 #Data exporting:
 #(should it be for more formats?)
 #TODO: Generalizar tipo output (FORMATO).
+#TODO: Generalizar Path
+#TODO: Generalizar tipo y nombre del archivo output.
+
 data_exporting <- function(data, name="groups.xlsx"){
   if (isWindows() == FALSE){
     path <- tk_choose.dir()
