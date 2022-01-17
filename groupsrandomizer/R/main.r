@@ -5,6 +5,14 @@ library(tcltk)
 #TODO: Crear ambiente del paquete.
 
 #functions:
+#Utils
+
+len_groups <- function(data){
+
+  for(i in 1:max(data$Groups)){
+    print(paste("Group",i,"has",sum((datos$Groups == i)), "members"))
+  }
+}
 
 #Utils
 #TODO: Funcion para identificar si es Linux o Windows
@@ -78,9 +86,32 @@ label_groups <- function(data, group_zise){
   data[order(data$Groups),]
 }
 
-#Groups for people who doesn't fit to the data:
+#Assingning to a group the people wiouth groups.
 
-#TODO: Construir funcion para gente sin grupos cuando aplica.
+fill_groups <- function(data,upper = TRUE){
+  if (upper) {
+    data$Groups <- replace(data$Groups,
+                           data$Groups==0,
+                           sample(c(1:max(data$Groups)),sum(data$Groups==0),
+                                  replace = FALSE))
+  }
+  else{
+    m_groups <- max(data$Groups)
+    k <- sum(data$Groups==1)
+    while ( sum(data$Groups==0) < k-1){
+      j <- sample(1:k,1)
+      i <- sample(1:m_groups,1)
+      if (sum(data$Groups==i)==k){
+        data[data$Groups==i,][j,1]=0
+        next
+      }
+      next
+    }
+    data[data$Groups==0,][,1] = m_groups + 1
+  }
+
+  data[order(data$Groups),]
+}
 
 #Final accommodations of the data:
 
@@ -98,8 +129,10 @@ data_formating <- function(data, variables = c(5,2,3,4), as_df = FALSE){
 
 #Data exporting:
 #(should it be for more formats?)
+#TODO: Generalizar tipo output (FORMATO).
 #TODO: Generalizar Path
 #TODO: Generalizar tipo y nombre del archivo output.
+
 data_exporting <- function(data, name="groups.xlsx"){
   if (isWindows() == FALSE){
     path <- tk_choose.dir()
@@ -124,13 +157,17 @@ randomizer <- function(group_zise){
 
 #Probando las funciones:
 
-datos <- load_data()
-datos <- process_data(datos)
-datos <- label_groups(data= datos, group_zise = 4)
-datos <- data_formating(datos)
-datos
-data_exporting(datos)
+# datos <- load_data()
+# datos <- process_data(datos)
+# datos <- label_groups(data= datos, group_zise = 4)
+# datos <- data_formating(datos)
+# datos
+# data_exporting(datos)
+#
+# datos <- randomizer(8)
+# datos <- fill_groups(data = datos, upper = FALSE)
+#
+# groups_len(data=datos)
 
-#randomizer(5)
 
 
