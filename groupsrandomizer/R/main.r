@@ -121,8 +121,13 @@ data_formating <- function(data, variables = c(5,2,3,4), as_df = FALSE){
 #Data exporting:
 #(should it be for more formats?)
 #TODO: Generalizar tipo output (FORMATO).
-
-
+data_exporting <- function(data, name="groups.xlsx"){
+  if (isWindows() == FALSE){
+    path <- tk_choose.dir()
+  }
+  else{
+    path <- choose.dir()
+  }
   write_xlsx(data, path = file.path(path, name))
 }
 
