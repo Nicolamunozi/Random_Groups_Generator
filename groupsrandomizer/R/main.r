@@ -1,19 +1,10 @@
 library(tidyverse)
 library(readxl)
 library(writexl)
-library(tcltk)
+
 #TODO: Crear ambiente del paquete.
 
 #functions:
-
-#Utils
-#TODO: Funcion para identificar si es Linux o Windows
-
-#If isWindows == TRUE -> Haz esta wea
-#Else if -> haz la wea nueva
-isWindows <- function(){
-  unname(Sys.info()["sysname"]) == "Windows"
-}
 
 #Load Data:
 
@@ -78,7 +69,7 @@ label_groups <- function(data, group_zise){
   data[order(data$Groups),]
 }
 
-#Groups for people who doesn't fit to the data:
+#Groups for people who doesn't fit to the data:1
 
 #TODO: Construir funcion para gente sin grupos cuando aplica.
 
@@ -100,13 +91,8 @@ data_formating <- function(data, variables = c(5,2,3,4), as_df = FALSE){
 #(should it be for more formats?)
 #TODO: Generalizar Path
 #TODO: Generalizar tipo y nombre del archivo output.
-data_exporting <- function(data, name="groups.xlsx"){
-  if (isWindows() == FALSE){
-    path <- tk_choose.dir()
-  }
-  else{
-    path <- choose.dir()
-  }
+data_exporting <- function(data, name="groups.xlsx", path=choose.dir()){
+
   write_xlsx(data, path = file.path(path, name))
 }
 
@@ -131,6 +117,6 @@ datos <- data_formating(datos)
 datos
 data_exporting(datos)
 
-#randomizer(5)
+randomizer(5)
 
 
